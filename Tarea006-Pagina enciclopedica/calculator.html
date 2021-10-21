@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/calculator.svg">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calculator.css">
+    <script src="script/calculator.js"></script>
+    <title>InfoMate</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255, 255, 250);">
+    <a class="navbar-brand" style="margin-left: 1em;"><img src="img/percent.svg" style="width: 2em; height: 2em;" id="Logo_Menu" alt="Logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="index.html">Inicio</a>
+        <a class="nav-item nav-link" href="index.html#Referentes__Title">Referentes</a>
+        <a class="nav-item nav-link active" href="calculator.html">Calculadora</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="Calculator">
+    <div id="Calculator__Contenedor">
+      <img src="img/casio.png" style="display: flex; width: 250px; margin: 0 auto;
+      margin-bottom: 2em;">
+      <input type="text" id="cajaCalculadora" value="234" readonly>
+      <div>
+        <button class="botonCalculadora" onclick="numClicked = 9;mostrarNumero();">9</button>
+        <button class="botonCalculadora" onclick="numClicked = 8;mostrarNumero();">8</button>
+        <button class="botonCalculadora" onclick="numClicked = 7;mostrarNumero();">7</button>
+        <button class="botonCalculadora spaceL" onclick="error();">Buno</button>
+        <button class="botonCalculadora" onclick="limpiar();">Btodo</button>
+        <button class="botonCalculadora" onclick="error();">Ftrigonometrica</button><br><br>
+      </div>
+      <div>
+        <button class="botonCalculadora" onclick="numClicked = 6;mostrarNumero();">6</button>
+        <button class="botonCalculadora" onclick="numClicked = 5;mostrarNumero();">5</button>
+        <button class="botonCalculadora" onclick="numClicked = 4;mostrarNumero();">4</button>
+        <button class="botonCalculadora spaceL" onclick="numClicked = '*';mostrarNumero();">x</button>
+        <button class="botonCalculadora" onclick="numClicked = '/';mostrarNumero();">/</button>
+        <button class="botonCalculadora" onclick="error();">Ffactorial</button><br><br>
+      </div>
+      <div>
+        <button class="botonCalculadora" onclick="numClicked = 3;mostrarNumero();">3</button>
+        <button class="botonCalculadora" onclick="numClicked = 2;mostrarNumero();">2</button>
+        <button class="botonCalculadora" onclick="numClicked = 1;mostrarNumero();">1</button>
+        <button class="botonCalculadora spaceL" onclick="numClicked = '+';mostrarNumero();">+</button>
+        <button class="botonCalculadora" onclick="numClicked = '-';mostrarNumero();">-</button>
+        <button class="botonCalculadora bFL" onclick="error();">AFuncionLineal</button><br><br>
+      </div>
+      <div>
+        <button class="botonCalculadora" onclick="error();">.</button>
+        <button class="botonCalculadora" onclick="numClicked = 0;mostrarNumero();">0</button>
+        <button class="botonCalculadora" onclick="error();">,</button>
+        <button class="botonCalculadora bEnviar spaceL" onclick="error();">Enviar</button>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

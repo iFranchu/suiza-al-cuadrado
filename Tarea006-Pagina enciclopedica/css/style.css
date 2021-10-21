@@ -1,0 +1,49 @@
+body{
+    background-color: #ffff;
+}
+#Logo_Menu:hover{
+    transform: rotate(-360deg);
+    filter: invert(24%) sepia(49%) saturate(4757%) hue-rotate(211deg) brightness(102%) contrast(106%);
+    transition: all 0.75s;
+}
+#Logo_Menu:not(:hover){
+    transform: rotate(360deg);
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(307deg) brightness(97%) contrast(102%);
+    transition: all 0.75s;
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  .Tarjetas {
+    margin-left: 0em;
+  }
+
+  .Tarjetas h2 {
+    text-align: center;
+  }
+
+  .Tarjetas__Contenido {
+    margin-right: 0;
+  }
+}
+@media (max-width: 375px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media (min-width: 1440px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media (min-width: 2560px) {
+  html {
+    font-size: 34px;
+  }
+}
