@@ -1,0 +1,118 @@
+@font-face {
+    font-family: calculadora;
+    src: url('../fonts/Calculator.ttf');
+}
+.calculadora{
+    width: 50%;
+    margin: auto;
+    background-color: #F5F5F5;
+    border-radius: 2em;
+    border: 0.1em #FB1F1F solid;
+    box-shadow: 0 0.5rem 1rem rgb(16 16 16 / 10%),
+    inset 0 -1px 0 rgb(0 0 0 / 15%);
+}
+.screen{
+    width: 90%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    height: 30%;
+}
+.screen input{
+    background-color: #6F8E6B;
+    text-align: end;
+    font-family: calculadora;
+    font-size: 3em;
+    width: 100%;
+    border: none;
+    height: 50%;
+}
+.screen input:hover{
+    cursor: default;
+}
+.escritura{
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+.operacion{
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+}
+.screen input:focus{
+    outline: none;
+}
+.contenedor-teclas{
+    width: 85%;
+    height: 35em;
+    margin-bottom: 3em;
+}
+.tecla{
+    font-size: 1.1em;
+    width: 4em;
+    height: 4em;
+    background-color: #F5F5F5;
+    border: 0.1em #FF4B4B solid;
+    border-radius: 100%;
+}
+.tecla:hover{
+    background-color: #E0E0E0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.tecla:not(:hover){
+    background-color: #F5F5F5;
+    transition: all 0.3s;
+}
+.operador{
+    background-color: #ff4b4b;
+}
+.operador:hover{
+    background-color: #e72e2e;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.operador:not(:hover){
+    background-color: #ff4b4b;
+    transition: all 0.3s;
+}
+.opcion{
+    background-color: #e5e5e5;
+}
+.opcion:hover{
+    background-color: #cccccc;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.opcion:not(:hover){
+    background-color: #e5e5e5;
+    transition: all 0.3s;
+}
+#igual{
+    background-color: #fb1f1f;
+}
+#igual:hover{
+    background-color: #e72e2e;
+    transition: all 0.3s;
+}
+#igual:not(:hover){
+    background-color: #fb1f1f;
+    transition: all 0.3s;
+}
+@media screen and (max-width: 1200px){
+    .calculadora{
+        width: 75%;
+    }
+}
+@media screen and (max-width: 800px){
+    .calculadora{
+        width: 100%;
+    }
+    .col-3{
+        padding-right: 0.3em;
+        padding-left: 0.3em;
+    }
+    .tecla{
+        font-size: 1em;
+        width: 3.25em;
+        height: 3.25em;
+    }
+}
