@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="src/css/home-styles.css">
     <link rel="stylesheet" href="src/css/calculator.css">
     <link rel="shortcut icon" href="src/img/logo.png" type="image/png">
-    <script src="src/js/functions.js" type="text/javascript"></script>
     <title>Suiza² - Calculadora</title>
 </head>
 <body>
@@ -51,13 +50,13 @@
               <h1 class="text-center title">Calculadora casi científica</h1>
               <div class="calculadora d-flex flex-column align-items-center">
                   <div class="screen d-flex flex-column align-items-center">
-                    <input type="text" class="resultado px-3" id="resultado" autocomplete="off" readonly>
-                    <input type="text" class="operacion px-3" id="operacion" autocomplete="off" readonly> 
+                    <input type="text" class="resultado px-3" id="valorAnterior" autocomplete="off" readonly>
+                    <input type="text" class="operacion px-3" id="valorActual" autocomplete="off" readonly> 
                   </div>
                   <div class="contenedor-teclas">
                     <div class="row h-100">
                         <div class="col-3 d-flex flex-column align-items-center h-100 justify-content-around">
-                            <button class="tecla opcion" id="limpiarVisor">CE</button>
+                            <button class="tecla opcion" id="limpiarPantalla">CE</button>
                             <button class="tecla numero" id="7">7</button>
                             <button class="tecla numero" id="4">4</button>
                             <button class="tecla numero" id="1">1</button>
@@ -75,14 +74,14 @@
                             <button class="tecla numero" id="9">9</button>
                             <button class="tecla numero" id="6">6</button>
                             <button class="tecla numero" id="3">3</button>
-                            <button class="tecla opcion" id="res-anterior">ANS</button>
+                            <button class="tecla numero" id="res-anterior">ANS</button>
                         </div>
                         <div class="col-3 d-flex flex-column align-items-center h-100 justify-content-around">
-                            <button class="tecla operador" id="division">÷</button>
-                            <button class="tecla operador" id="multiplicacion">x</button>
-                            <button class="tecla operador" id="resta">-</button>
-                            <button class="tecla operador" id="suma">+</button>
-                            <button class="tecla" id="igual">=</button>
+                            <button class="tecla operador" id="division" value="dividir">÷</button>
+                            <button class="tecla operador" id="multiplicacion" value="multiplicar">*</button>
+                            <button class="tecla operador" id="resta" value="restar">-</button>
+                            <button class="tecla operador" id="suma" value="sumar">+</button>
+                            <button class="tecla operador" id="igual" value="igual">=</button>
                         </div>
                     </div>
                   </div>
