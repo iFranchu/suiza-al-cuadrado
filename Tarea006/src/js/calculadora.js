@@ -1,8 +1,9 @@
 /* Se declaran todos los elementos de la calculadora */
-let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined;
+let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined, historialResultados = [], lastOperationType = undefined;
 const simbolos = {
     sumar : '+', restar : '-', multiplicar : '*', dividir : '/'
-}, ultimoValorAnterior = valorAnterior.value[valorAnterior.value.length - 1], ultimoValorActual = valorActual.value[valorActual.value.length - 1];
+}
+/* Se establecen los eventos para cada tecla */
 numeros.forEach(btn => {
     btn.addEventListener("click", ()=>{
         escribirNumero(btn.innerHTML)
@@ -13,11 +14,21 @@ operadores.forEach(btn => {
         escribirOperador(btn.value)
     })
 })
+historial.addEventListener("click", ()=>{
+    verHistorial()
+})
 /* Impresión de los números y símbolos al apretar teclas */
 function escribirNumero(valor){
-    if(valor == "." && (stringValorActual.includes('.') || stringValorActual == '')){return}
-    if(valor == "ANS" && !isNaN(ultimoRes)){
-        if(stringValorAnterior[stringValorAnterior.length - 1] == simbolos.sumar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.restar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.dividir){
+    if(valor == "." && (stringValorActual.includes('.') || stringValorActual == '')) return
+    if(valor != 'ANS' && operationType == 'igual'){
+        console.log("entro")
+        stringValorActual = ''
+        stringValorAnterior = ''
+        operationType = undefined
+    }
+    if(valor == "ANS"){
+        if(ultimoRes == undefined) return
+        if((stringValorAnterior[stringValorAnterior.length - 1] == simbolos.sumar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.restar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.dividir) && stringValorActual == ''){
             valor = ultimoRes
             stringValorActual = stringValorActual.toString() + valor.toString()
         }
@@ -28,7 +39,8 @@ function escribirNumero(valor){
                 stringValorActual = ''
             }
             else{
-                valor = simbolos.multiplicar + ultimoRes
+                if(stringValorAnterior != '') valor = simbolos.multiplicar + ultimoRes
+                else valor = ultimoRes
             }
             stringValorActual = stringValorActual.toString() + valor.toString()
         }
@@ -46,40 +58,28 @@ function escribirOperador(type){
     switch (operationType) {
         case 'igual': calcular();return;
         case 'restar':
-            if(stringValorActual == '' && stringValorAnterior == ''){
-                console.log("Valor actual está vacio")
-                stringValorAnterior+=simbolos[operationType]
-            }
+            if(stringValorActual == '' && stringValorAnterior == '') stringValorAnterior+=simbolos[operationType]
             else if(stringValorAnterior[stringValorAnterior.length - 1] == simbolos.sumar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length - 1] == simbolos.dividir){
-                console.log("else if 1")
                 stringValorAnterior += stringValorActual + simbolos[type]
                 stringValorActual = ''
             }
             else if(stringValorAnterior[stringValorAnterior.length - 1] == simbolos.restar || (stringValorAnterior[stringValorAnterior.length - 2] != simbolos.sumar || [stringValorAnterior.length - 2] != simbolos.multiplicar || [stringValorAnterior.length - 2] != simbolos.dividir)){
-                console.log("else if 2")
                 if(stringValorAnterior[stringValorAnterior.length - 1] == simbolos.restar && stringValorActual == ''){
-                    console.log("reemplazo del -")
                     stringValorAnterior = stringValorAnterior.slice(0,-1)
                     operationType = 'sumar'
                 }
                 else if((stringValorAnterior[stringValorAnterior.length - 2] == simbolos.sumar || stringValorAnterior[stringValorAnterior.length - 2] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length - 2] == simbolos.dividir) && stringValorActual == ''){return}
                 verificarOperador(operationType)
             }
-            else{
-                console.log("else")
-                verificarOperador(operationType)
-            }
-            break;
+            else verificarOperador(operationType); break;
         default:verificarOperador(operationType);break;
         }
     imprimirValor()
 }
-/* Eventos para las teclas para borrar caracteres y otras funciones */
+/* Funciones y eventos para otras teclas */
 limpiar.onclick = limpiarPantalla
 borrar.onclick = borrarCaract
 function imprimirValor(){
-    /* console.log(stringValorActual + " VALOR ACTUAL")
-    console.log(stringValorAnterior + " VALOR ANTERIOR") */
     valorActual.value = stringValorActual
     valorAnterior.value = stringValorAnterior
 }
@@ -98,7 +98,6 @@ function verificarOperador(type){
     else{
         if((stringValorAnterior[stringValorAnterior.length-1] == simbolos.sumar || (stringValorAnterior[stringValorAnterior.length-1] == simbolos.restar) || stringValorAnterior[stringValorAnterior.length-1] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length-1] == simbolos.dividir) && stringValorActual == ''){
             if(stringValorAnterior[stringValorAnterior.length-2] == simbolos.sumar || stringValorAnterior[stringValorAnterior.length-2] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length-2] == simbolos.dividir && stringValorAnterior[stringValorAnterior.length-2] == undefined /* || stringValorActual == '' */){return}
-            console.log("reemplazo de operador")
             stringValorAnterior = stringValorAnterior.slice(0,-1)
         }
     } 
@@ -111,6 +110,15 @@ function calcular(){
     stringValorAnterior = operacion
     stringValorActual = eval(operacion)
     ultimoRes = stringValorActual
+    historialResultados.push(ultimoRes)
     imprimirValor()
+    stringValorAnterior = ''
+}
+function verHistorial(){
+    if(historialResultados[0] == undefined) return
+    stringValorAnterior = historialResultados.toString()
+    stringValorActual = ''
+    imprimirValor()
+    stringValorActual = ''
     stringValorAnterior = ''
 }
