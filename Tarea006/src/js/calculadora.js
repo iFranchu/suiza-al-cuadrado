@@ -21,7 +21,6 @@ historial.addEventListener("click", ()=>{
 function escribirNumero(valor){
     if(valor == "." && (stringValorActual.includes('.') || stringValorActual == '')) return
     if(valor != 'ANS' && operationType == 'igual'){
-        console.log("entro")
         stringValorActual = ''
         stringValorAnterior = ''
         operationType = undefined
@@ -121,4 +120,8 @@ function verHistorial(){
     imprimirValor()
     stringValorActual = ''
     stringValorAnterior = ''
+}
+function trigonometria(type){
+    if(stringValorActual != '' && stringValorAnterior != '') calcular()
+    stringValorActual = Math[type](stringValorActual)
 }
