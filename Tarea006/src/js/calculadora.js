@@ -1,5 +1,5 @@
 /* Se declaran todos los elementos de la calculadora */
-let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined, historialResultados = [], lastOperationType = undefined;
+let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), f_trigonometricas = document.querySelectorAll('.f-trig'), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined, historialResultados = [], lastOperationType = undefined;
 const simbolos = {
     sumar : '+', restar : '-', multiplicar : '*', dividir : '/'
 }
@@ -12,6 +12,11 @@ numeros.forEach(btn => {
 operadores.forEach(btn => {
     btn.addEventListener("click", ()=>{
         escribirOperador(btn.value)
+    })
+})
+f_trigonometricas.forEach(btn => {
+    btn.addEventListener("click", ()=>{
+        trigonometria(btn.value)
     })
 })
 historial.addEventListener("click", ()=>{
@@ -78,6 +83,7 @@ function escribirOperador(type){
 /* Funciones y eventos para otras teclas */
 limpiar.onclick = limpiarPantalla
 borrar.onclick = borrarCaract
+
 function imprimirValor(){
     valorActual.value = stringValorActual
     valorAnterior.value = stringValorAnterior
@@ -107,9 +113,12 @@ function calcular(){
     if(stringValorAnterior == '' || stringValorActual == '') return /* No se realiza ninguna operación */
     const operacion = stringValorAnterior + stringValorActual
     stringValorAnterior = operacion
+    if(isNaN(eval(operacion)) || eval(operacion) == Infinity)stringValorActual = 'Syntax ERROR'
+    else{
     stringValorActual = eval(operacion)
     ultimoRes = stringValorActual
     historialResultados.push(ultimoRes)
+    }
     imprimirValor()
     stringValorAnterior = ''
 }
@@ -123,5 +132,38 @@ function verHistorial(){
 }
 function trigonometria(type){
     if(stringValorActual != '' && stringValorAnterior != '') calcular()
-    stringValorActual = Math[type](stringValorActual)
+    switch (type) {
+        case 'cos':
+            stringValorActual =  Math[type](radians_to_degrees(parseFloat(stringValorActual)))
+            break;
+    
+        case 'sin':
+            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
+            break;
+
+        case 'tan':
+            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
+            break;
+        case 'acos':
+            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
+            break;
+        case 'asin':
+            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
+            break;
+        case 'atan':
+            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
+            break;
+    }
+    imprimirValor()
+    stringValorActual = ''
+    stringValorAnterior = ''
+}
+
+function radians_to_degrees(radians){
+  var pi = Math.PI;
+  return radians * (180/pi);
+}
+function degrees_to_radians(degrees){
+  var pi = Math.PI;
+  return degrees * (pi/180);
 }
