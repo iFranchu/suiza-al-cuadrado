@@ -1,0 +1,10 @@
+table#datosFuncion{
+    text-align: center;
+    margin: 2em;
+}
+table th{
+    border: 2px #00000060 solid;
+}
+table td{
+    border: 2px #00000060 solid;
+}
