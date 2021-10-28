@@ -1,5 +1,5 @@
 /* Se declaran todos los elementos de la calculadora */
-let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), f_trigonometricas = document.querySelectorAll('.f-trig'), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined, historialResultados = [], lastOperationType = undefined, btnFactorial = document.getElementById("btnFactorial"); 
+let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), f_trigonometricas = document.querySelectorAll('.f-trig'), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined, historialResultados = [], lastOperationType = undefined, btnFactorial = document.getElementById("btnFactorial");
 const simbolos = {
     sumar : '+', restar : '-', multiplicar : '*', dividir : '/'
 }
@@ -24,6 +24,9 @@ historial.addEventListener("click", ()=>{
 })
 btnFactorial.addEventListener("click", ()=>{
     factorizarNumero();
+})
+calcularButton.addEventListener("click", ()=>{
+    funcionLineal();
 })
 
 /* Impresión de los números y símbolos al apretar teclas */
@@ -204,4 +207,58 @@ function factorizarNumero() {
     
     stringValorActual = "";
     stringValorAnterior = "";
+}
+function funcionLineal(){
+    var inputPendiente = document.getElementById("input-pendiente").value;
+    var inputOrdenada = document.getElementById("input-ordenada").value;
+
+    if (inputPendiente == "") {
+        var valorA_FL = 1;
+        inputPendiente = 1;
+    }else{
+        var valorA_FL = parseInt(inputPendiente);
+    }
+    var valorB_FL = parseInt(inputOrdenada);
+
+    if (inputOrdenada != "" && inputPendiente == "0" && !isNaN(valorB_FL)) {
+        if (inputOrdenada == 0) {
+            document.getElementById("AO__Number").innerHTML = valorA_FL;
+            document.getElementById("OO__Number").innerHTML = valorB_FL;
+        }else if (inputOrdenada != 0) {
+            document.getElementById("AO__Number").innerHTML = "Not";
+            document.getElementById("OO__Number").innerHTML = valorB_FL;
+        }
+
+        document.getElementById("IN__Number").innerHTML = "Not";
+        document.getElementById("IP__Number").innerHTML = "Not";
+        document.getElementById("FType").innerHTML = "Constante";
+        
+    }else if (inputOrdenada == "0" && inputPendiente != "" && !isNaN(valorA_FL)) {
+            document.getElementById("AO__Number").innerHTML = valorA_FL;
+            document.getElementById("OO__Number").innerHTML = valorB_FL;
+
+        document.getElementById("FType").innerHTML = "Constante";
+        
+    }else if (inputOrdenada != "" && inputPendiente != "" && !isNaN(valorA_FL) && !isNaN(valorB_FL)) {
+        document.getElementById("AO__Number").innerHTML = valorB_FL/valorA_FL;
+        document.getElementById("OO__Number").innerHTML = valorB_FL;
+
+        document.getElementById("IN__Number").innerHTML = "(-∞;" + valorB_FL/valorA_FL + ")";
+        document.getElementById("IP__Number").innerHTML = "(" + valorB_FL/valorA_FL + ";+∞)";
+
+        if (valorA_FL > 0) document.getElementById("FType").innerHTML = "Creciente";
+        else if (valorA_FL < 0) document.getElementById("FType").innerHTML = "Decreciente";
+        else if (valorA_FL == 0) document.getElementById("FType").innerHTML = "Constante";
+
+    }else if(inputOrdenada == "" && inputPendiente != "" && !isNaN(valorA_FL)){
+        document.getElementById("AO__Number").innerHTML = valorA_FL;
+        document.getElementById("OO__Number").innerHTML = 0;
+
+        document.getElementById("IN__Number").innerHTML = "(-∞;" + valorA_FL + ")";
+        document.getElementById("IP__Number").innerHTML = "(" + valorA_FL + ";+∞)";
+        
+        if (valorA_FL > 0) document.getElementById("FType").innerHTML = "Creciente";
+        else if (valorA_FL < 0) document.getElementById("FType").innerHTML = "Decreciente";
+        else if (valorA_FL == 0) document.getElementById("FType").innerHTML = "Constante";
+    }
 }
