@@ -113,7 +113,13 @@ function calcular(){
     if(stringValorAnterior == '' || stringValorActual == '') return /* No se realiza ninguna operación */
     const operacion = stringValorAnterior + stringValorActual
     stringValorAnterior = operacion
-    if(isNaN(eval(operacion)) || eval(operacion) == Infinity)stringValorActual = 'Syntax ERROR'
+    if(isNaN(eval(operacion)) || eval(operacion) == Infinity){
+        stringValorActual = 'Syntax ERROR'
+        imprimirValor()
+        stringValorActual = ''
+        stringValorAnterior = ''
+        return
+    }
     else{
     stringValorActual = eval(operacion)
     ultimoRes = stringValorActual
@@ -131,29 +137,21 @@ function verHistorial(){
     stringValorAnterior = ''
 }
 function trigonometria(type){
+    if(stringValorActual == '') return
     if(stringValorActual != '' && stringValorAnterior != '') calcular()
     switch (type) {
         case 'cos':
-            stringValorActual =  Math[type](radians_to_degrees(parseFloat(stringValorActual)))
-            break;
-    
-        case 'sin':
-            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
-            break;
-
-        case 'tan':
-            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
+            if(Math.cos(parseFloat(stringValorActual)) == Math.cos(90)) stringValorActual = '0' /* Javascript hace cosas raras cuando calcula el coseno de 90, así que hice esto */
+            else stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
             break;
         case 'acos':
-            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
-            break;
+            if(parseFloat(stringValorActual) > 1 || parseFloat(stringValorActual) < -57){stringValorAnterior = '';imprimirValor(); return}
+            else stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
         case 'asin':
-            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
-            break;
-        case 'atan':
-            stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
-            break;
+            if(parseFloat(stringValorActual) > 57.2 || parseFloat(stringValorActual) < -57.2){stringValorAnterior = '';imprimirValor(); return}
+            else stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
     }
+    stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual)))
     imprimirValor()
     stringValorActual = ''
     stringValorAnterior = ''
