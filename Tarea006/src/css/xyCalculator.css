@@ -8,3 +8,6 @@ table th{
 table td{
     border: 2px #00000060 solid;
 }
+.inputFuncionLineal{
+    width: 3em;
+}

@@ -234,8 +234,8 @@ function funcionLineal(){
         document.getElementById("FType").innerHTML = "Constante";
         
     }else if (inputOrdenada == "0" && inputPendiente != "" && !isNaN(valorA_FL)) {
-            document.getElementById("AO__Number").innerHTML = valorA_FL;
-            document.getElementById("OO__Number").innerHTML = valorB_FL;
+        document.getElementById("AO__Number").innerHTML = valorA_FL;
+        document.getElementById("OO__Number").innerHTML = valorB_FL;
 
         document.getElementById("FType").innerHTML = "Constante";
         
@@ -260,5 +260,14 @@ function funcionLineal(){
         if (valorA_FL > 0) document.getElementById("FType").innerHTML = "Creciente";
         else if (valorA_FL < 0) document.getElementById("FType").innerHTML = "Decreciente";
         else if (valorA_FL == 0) document.getElementById("FType").innerHTML = "Constante";
+    }else{
+        document.getElementById("AO__Number").innerHTML = "error";
+        document.getElementById("OO__Number").innerHTML = "error";
+        document.getElementById("IN__Number").innerHTML = "error";
+        document.getElementById("IP__Number").innerHTML = "error";
+        document.getElementById("FType").innerHTML = "error";
+
+        document.getElementById("input-pendiente").value = "";
+        document.getElementById("input-ordenada").value = "";
     }
 }
