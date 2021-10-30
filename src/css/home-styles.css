@@ -152,6 +152,35 @@ a.boton{
     right: -5px;
     bottom: -5px;
 }
+.simplescrollup__button {
+    position: fixed;
+    margin-top: 15px;
+    padding: 5px;
+    width: 2.5em;
+    height: 2.5em;
+    bottom: 2rem;
+    border-radius: 2.5em;
+    right: 3rem;
+    z-index: 10000;
+    text-align: center; 
+    border: solid 1px #E72E2E;
+    background-color: #F5F5F5;
+    background-image: url("../img/chevron-up.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.5s all;
+  }
+  .simplescrollup__button:hover {
+    background-color: #ccc;
+    transition: all 0.5s;
+  }
+  .simplescrollup__button--show {
+    transform: translateX(-100px);
+  }
+  .simplescrollup__button--hide {
+    transform: translateX(10px);
+  }
 @media screen and (max-width: 1200px){
     .contenedor{
         width: 95%;
@@ -166,6 +195,14 @@ a.boton{
 @media screen and (max-height: 700px){
     .contenedor{
         height: auto;
+    }
+    .carousel-item{
+        height: 80%;
+        border-radius: inherit;
+    }
+    .carousel-item img{
+        height: 15em !important;
+        border-radius: none;
     }
 }
 .nav-link{
