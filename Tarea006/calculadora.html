@@ -14,36 +14,36 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light position-fixed w-100">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-              <img src="src/img/logo.svg" alt="Logo del sitio web" width="40" height="40" class="d-inline-block align-text-center logo">
-          </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="calculadora.html">Calculadora</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Aprende sobre...
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="Babbege.html">Charles Babbage</a></li>
-                <li><a class="dropdown-item" href="Pitagoras.html">Pitágoras de Samos</a></li>
-                <li><a class="dropdown-item" href="Newton.html">Isaac Newton</a></li>
-                <li><a class="dropdown-item" href="Turing.html">Alan Turing</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="src/img/logo.svg" alt="Logo del sitio web" width="40" height="40" class="d-inline-block align-text-center logo">
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calculadora.html">Calculadora</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Aprende sobre...
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="babbege.html">Charles Babbage</a></li>
+              <li><a class="dropdown-item" href="pitagoras.html">Pitágoras de Samos</a></li>
+              <li><a class="dropdown-item" href="newton.html">Isaac Newton</a></li>
+              <li><a class="dropdown-item" href="turing.html">Alan Turing</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
       <section class="contenedor mx-auto">
           <div class="contenido mx-auto">
               <h1 class="text-center title">Calculadora casi científica</h1>
@@ -88,16 +88,16 @@
                             <button class="tecla operador" id="suma" value="sumar">+</button>
                             <button class="tecla operador" id="igual" value="igual">=</button>
                             <button class="tecla opcion" id="btnFactorial">n!</button>
-                            <button class="tecla opcion goToFunction"><i>xy</i></button>
+                            <button class="tecla opcion goToFunction" title="Análisis de funciones lineales"><i>xy</i></button>
                         </div>
                     </div>
                   </div>
               </div>
               <div class="contenedor-funcion invisible position-fixed d-flex flex-column align-items-center text-center">
-                <button class="tecla opcion goToFunction">&#8630</button>
+                <button class="goToFunction goToFunction2" title="Volver a la calculadora">&#8630</button>
                 <h2>Análisis de funciones lineales <i>ONLINE</i></h2>
-                <div class="d-flex">
-                  <h4>y =</h4><input class="inputFuncionLineal" type="number" maxlength="2" id="input-pendiente"><h4>x + </h4><input class="inputFuncionLineal" type="number" id="input-ordenada" maxlength="2">
+                <div class="d-flex justify-content-around flex-wrap">
+                  <h4>y =</h4><input class="inputFuncionLineal mx-1" type="number" maxlength="2" id="input-pendiente"><h4>x + </h4><input class="inputFuncionLineal mx-1" type="number" id="input-ordenada" maxlength="2">
                   <input type="button" value="Calcular" id="calcularButton">
                 </div>
                 <section id="datosLista">

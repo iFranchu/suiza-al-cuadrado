@@ -122,7 +122,7 @@ function calcular(){
     if(stringValorAnterior == '' || stringValorActual == '') return; /* No se realiza ninguna operación */
     const operacion = stringValorAnterior + stringValorActual;
     stringValorAnterior = operacion;
-    if(isNaN(eval(operacion)) || eval(operacion) == Infinity){
+    if(isNaN(eval(operacion)) || eval(operacion) == Infinity || eval(operacion) == -Infinity){
         stringValorActual = 'Syntax ERROR';
         imprimirValor();
         stringValorActual = '';
@@ -130,9 +130,9 @@ function calcular(){
         return;
     }
     else{
-    stringValorActual = eval(operacion);
-    ultimoRes = stringValorActual;
-    historialResultados.push(ultimoRes);
+        stringValorActual = eval(operacion);
+        ultimoRes = stringValorActual;
+        historialResultados.push(ultimoRes);
     }
     imprimirValor();
     stringValorAnterior = '';
@@ -208,23 +208,47 @@ function factorizarNumero() {
     stringValorActual = "";
     stringValorAnterior = "";
 }
+
+/* Declaración de variables y eventos para alternar entre la calculadora y la 'analizadora' de funciones lineales */
+const btnAlternarCalculadora = document.querySelectorAll(".goToFunction"), calculadora = document.querySelector(".calculadora"), teclas = document.querySelector(".contenedor-teclas"), contFuncion = document.querySelector(".contenedor-funcion");
+
+btnAlternarCalculadora.forEach(btn => {
+    btn.addEventListener("click", ()=>{
+        calculadora.classList.toggle("invisible");
+        calculadora.classList.toggle("position-fixed");
+        contFuncion.classList.toggle("invisible");
+        contFuncion.classList.toggle("position-fixed");
+    })
+});
+
+/* Declaración de funciones para el análisis de la función lineal */
 function funcionLineal(){
-    var inputPendiente = document.getElementById("input-pendiente").value;
-    var inputOrdenada = document.getElementById("input-ordenada").value;
-
-    if (inputPendiente == "") {
-        var valorA_FL = 1;
-        inputPendiente = 1;
-    }else{
-        var valorA_FL = parseInt(inputPendiente);
+    var inputPendiente = document.getElementById("input-pendiente");
+    var inputOrdenada = document.getElementById("input-ordenada");
+    if(inputPendiente.value == -0){
+        var valorA_FL = 0;
+    inputPendiente.value = 0;
     }
-    var valorB_FL = parseInt(inputOrdenada);
+    if (inputPendiente.value == "") {
+        var valorA_FL = 1;
+        inputPendiente.value = 1;
+    }
+    else{
+        var valorA_FL = parseInt(inputPendiente.value);
+    }
+    if(inputOrdenada.value == -0){
+        var valorB_FL = 0;
+        inputOrdenada.value = 0;
+    }
+    else var valorB_FL = parseInt(inputOrdenada.value);
+    
 
-    if (inputOrdenada != "" && inputPendiente == "0" && !isNaN(valorB_FL)) {
-        if (inputOrdenada == 0) {
+    if (inputOrdenada.value != "" && inputPendiente.value == "0" && !isNaN(valorB_FL)) {
+        if (inputOrdenada.value == 0) {
             document.getElementById("AO__Number").innerHTML = valorA_FL;
             document.getElementById("OO__Number").innerHTML = valorB_FL;
-        }else if (inputOrdenada != 0) {
+        }
+        else if (inputOrdenada.value != 0) {
             document.getElementById("AO__Number").innerHTML = "Not";
             document.getElementById("OO__Number").innerHTML = valorB_FL;
         }
@@ -233,13 +257,15 @@ function funcionLineal(){
         document.getElementById("IP__Number").innerHTML = "Not";
         document.getElementById("FType").innerHTML = "Constante";
         
-    }else if (inputOrdenada == "0" && inputPendiente != "" && !isNaN(valorA_FL)) {
+    }
+    else if (inputOrdenada.value == "0" && inputPendiente.value != "" && !isNaN(valorA_FL)) {
         document.getElementById("AO__Number").innerHTML = valorA_FL;
         document.getElementById("OO__Number").innerHTML = valorB_FL;
 
         document.getElementById("FType").innerHTML = "Constante";
         
-    }else if (inputOrdenada != "" && inputPendiente != "" && !isNaN(valorA_FL) && !isNaN(valorB_FL)) {
+    }
+    else if (inputOrdenada.value != "" && inputPendiente.value != "" && !isNaN(valorA_FL) && !isNaN(valorB_FL)) {
         document.getElementById("AO__Number").innerHTML = valorB_FL/valorA_FL;
         document.getElementById("OO__Number").innerHTML = valorB_FL;
 
@@ -250,7 +276,8 @@ function funcionLineal(){
         else if (valorA_FL < 0) document.getElementById("FType").innerHTML = "Decreciente";
         else if (valorA_FL == 0) document.getElementById("FType").innerHTML = "Constante";
 
-    }else if(inputOrdenada == "" && inputPendiente != "" && !isNaN(valorA_FL)){
+    }
+    else if(inputOrdenada.value == "" && inputPendiente.value != "" && !isNaN(valorA_FL)){
         document.getElementById("AO__Number").innerHTML = valorA_FL;
         document.getElementById("OO__Number").innerHTML = 0;
 
@@ -260,7 +287,8 @@ function funcionLineal(){
         if (valorA_FL > 0) document.getElementById("FType").innerHTML = "Creciente";
         else if (valorA_FL < 0) document.getElementById("FType").innerHTML = "Decreciente";
         else if (valorA_FL == 0) document.getElementById("FType").innerHTML = "Constante";
-    }else{
+    }
+    else{
         document.getElementById("AO__Number").innerHTML = "error";
         document.getElementById("OO__Number").innerHTML = "error";
         document.getElementById("IN__Number").innerHTML = "error";

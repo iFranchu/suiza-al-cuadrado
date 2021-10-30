@@ -3,11 +3,49 @@ table#datosFuncion{
     margin: 2em;
 }
 table th{
-    border: 2px #00000060 solid;
+    border: 2px #000000 solid;
 }
 table td{
-    border: 2px #00000060 solid;
+    border: 2px #000000 solid;
 }
 .inputFuncionLineal{
+    width: 5em;
+    border: none;
+    text-align: center;
+}
+.inputFuncionLineal:focus{
+    outline: none;
+}
+.goToFunction2{
+    font-size: 2em;
+    background-color: #F5F5F5;
+    border: 2px #FF4B4B solid;
     width: 3em;
+    border-radius: 0.25em;
+}
+.goToFunction2:hover{
+    background-color: #E0E0E0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.goToFunction2:not(:hover){
+    background-color: #F5F5F5;
+    transition: all 0.3s;
+}
+#calcularButton{
+    font-size: 1.15em;
+    background-color: #F5F5F5;
+    border: 2px #FF4B4B solid;
+    margin-left: 1em;
+    width: 5em;
+    border-radius: 0.25em;
+}
+#calcularButton:hover{
+    background-color: #E0E0E0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#calcularButton:not(:hover){
+    background-color: #F5F5F5;
+    transition: all 0.3s;
 }
