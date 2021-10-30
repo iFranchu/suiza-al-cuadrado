@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/normalize.css">
+    <link rel="stylesheet" href="src/css/bootstrap.css">
+    <link rel="stylesheet" href="src/css/home-styles.css">
+    <link rel="stylesheet" href="src/css/calculator.css">
+    <link rel="stylesheet" href="src/css/xyCalculator.css">
+    <link rel="shortcut icon" href="src/img/logo.png" type="image/png">
+    <title>Suiza² - Calculadora</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light position-fixed w-100">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="src/img/logo.svg" alt="Logo del sitio web" width="40" height="40" class="d-inline-block align-text-center logo">
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calculadora.html">Calculadora</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Aprende sobre...
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="babbege.html">Charles Babbage</a></li>
+              <li><a class="dropdown-item" href="pitagoras.html">Pitágoras de Samos</a></li>
+              <li><a class="dropdown-item" href="newton.html">Isaac Newton</a></li>
+              <li><a class="dropdown-item" href="turing.html">Alan Turing</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+      <section class="contenedor mx-auto">
+          <div class="contenido mx-auto">
+              <h1 class="text-center title">Calculadora casi científica</h1>
+              <div class="calculadora d-flex flex-column align-items-center">
+                  <div class="screen d-flex flex-column align-items-center">
+                    <input type="text" class="resultado px-3" id="valorAnterior" autocomplete="off" readonly>
+                    <input type="text" class="operacion px-3" id="valorActual" autocomplete="off" readonly> 
+                  </div>
+                  <div class="contenedor-teclas">
+                    <div class="row h-100">
+                        <div class="col-3 d-flex flex-column align-items-center h-100 justify-content-around">
+                            <button class="tecla opcion" id="limpiarPantalla">CE</button>
+                            <button class="tecla numero" id="7">7</button>
+                            <button class="tecla numero" id="4">4</button>
+                            <button class="tecla numero" id="1">1</button>
+                            <button class="tecla numero" id="0">0</button>
+                            <button class="tecla f-trig" value="sin">sin</button>
+                            <button class="tecla f-trig" value="asin">ars</button>
+                        </div>
+                        <div class="col-3 d-flex flex-column align-items-center h-100 justify-content-around">
+                            <button class="tecla opcion" id="borrarCaract">DEL</button>
+                            <button class="tecla numero" id="8">8</button>
+                            <button class="tecla numero" id="5">5</button>
+                            <button class="tecla numero" id="2">2</button>
+                            <button class="tecla numero" id="punto">.</button>
+                            <button class="tecla f-trig" value="cos">cos</button>
+                            <button class="tecla f-trig" value="acos">arc</button>
+                        </div>
+                        <div class="col-3 d-flex flex-column align-items-center h-100 justify-content-around">
+                            <button class="tecla opcion" id="historial">HIS</button>
+                            <button class="tecla numero" id="9">9</button>
+                            <button class="tecla numero" id="6">6</button>
+                            <button class="tecla numero" id="3">3</button>
+                            <button class="tecla numero" id="res-anterior">ANS</button>
+                            <button class="tecla f-trig" value="tan">tan</button>
+                            <button class="tecla f-trig" value="atan">art</button>
+                        </div>
+                        <div class="col-3 d-flex flex-column align-items-center h-100 justify-content-around">
+                            <button class="tecla operador" id="division" value="dividir">÷</button>
+                            <button class="tecla operador" id="multiplicacion" value="multiplicar">*</button>
+                            <button class="tecla operador" id="resta" value="restar">-</button>
+                            <button class="tecla operador" id="suma" value="sumar">+</button>
+                            <button class="tecla operador" id="igual" value="igual">=</button>
+                            <button class="tecla opcion" id="btnFactorial">n!</button>
+                            <button class="tecla opcion goToFunction" title="Análisis de funciones lineales"><i>xy</i></button>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="contenedor-funcion invisible position-fixed d-flex flex-column align-items-center text-center">
+                <button class="goToFunction goToFunction2" title="Volver a la calculadora">&#8630</button>
+                <h2>Análisis de funciones lineales <i>ONLINE</i></h2>
+                <div class="d-flex justify-content-around flex-wrap">
+                  <h4>y =</h4><input class="inputFuncionLineal mx-1" type="number" maxlength="2" id="input-pendiente"><h4>x + </h4><input class="inputFuncionLineal mx-1" type="number" id="input-ordenada" maxlength="2">
+                  <input type="button" value="Calcular" id="calcularButton">
+                </div>
+                <section id="datosLista">
+                  <table cellspacing="10" cellpadding="10" id="datosFuncion">
+                    <tr>
+                      <th colspan="2">Datos de la Función</th>
+                    </tr>
+                    <tr>
+                      <td>Abscisas al origen</td>
+                      <td id="AO__Number">---</td>
+                    </tr>
+                    <tr>
+                      <td>Ordenada al origen</td>
+                      <td id="OO__Number">---</td>
+                    </tr>
+                    <tr>
+                      <td>La función es</td>
+                      <td id="FType">---</td>
+                    </tr>
+                    <tr>
+                      <td>Intervalo de negatividad</td>
+                      <td id="IN__Number">---</td>
+                    </tr>
+                    <tr>
+                      <td>Intervalo de positividad</td>
+                      <td id="IP__Number">---</td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+          </div>
+      </section>
+    <script src="src/js/bootstrap.js"></script>
+    <script src="src/js/calculadora.js" type="text/javascript"></script>
+    <script src="src/js/funcion-lineal.js"></script>
+</body>
+</html>
