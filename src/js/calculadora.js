@@ -1,5 +1,5 @@
 /* Se declaran todos los elementos de la calculadora */
-let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), f_trigonometricas = document.querySelectorAll('.f-trig'), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined, historialResultados = [], lastOperationType = undefined, btnFactorial = document.getElementById("btnFactorial");
+let valorAnterior = document.getElementById("valorAnterior"), valorActual = document.getElementById("valorActual") ,numeros = document.querySelectorAll(".numero"), operadores = document.querySelectorAll(".operador"), f_trigonometricas = document.querySelectorAll('.f-trig'), limpiar = document.getElementById("limpiarPantalla"), borrar = document.getElementById("borrarCaract"), ans = document.getElementById("res-anterior"), historial = document.getElementById("historial"), stringValorAnterior = "", stringValorActual = "", operationType = undefined, ultimoRes = undefined, historialResultados = [], btnFactorial = document.getElementById("btnFactorial");
 const simbolos = {
     sumar : '+', restar : '-', multiplicar : '*', dividir : '/'
 };
@@ -122,7 +122,7 @@ function verificarOperador(type){
     else{
         if((stringValorAnterior[stringValorAnterior.length-1] == simbolos.sumar || (stringValorAnterior[stringValorAnterior.length-1] == simbolos.restar) || stringValorAnterior[stringValorAnterior.length-1] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length-1] == simbolos.dividir) && stringValorActual == ''){
             if(stringValorAnterior[stringValorAnterior.length-2] == simbolos.sumar || stringValorAnterior[stringValorAnterior.length-2] == simbolos.multiplicar || stringValorAnterior[stringValorAnterior.length-2] == simbolos.dividir && stringValorAnterior[stringValorAnterior.length-2] == undefined){return}
-            stringValorAnterior = stringValorAnterior.slice(0,-1)
+            stringValorAnterior = stringValorAnterior.slice(0,-1);
         }
     } 
     stringValorAnterior += stringValorActual + simbolos[type];
@@ -130,7 +130,7 @@ function verificarOperador(type){
 }
 
 function calcular(){
-    if(stringValorAnterior == '' || stringValorActual == '') return; /* No se realiza ninguna operación */
+    if(stringValorAnterior == '' || stringValorActual == ''){operationType = undefined;return}; /* No se realiza ninguna operación */
     const operacion = stringValorAnterior + stringValorActual;
     stringValorAnterior = operacion;
     /* .eval() recibe como único parámetro un string, y evalúa la expresión que tiene ese string */
@@ -152,9 +152,9 @@ function calcular(){
 
 function verHistorial(){
     if(historialResultados[0] == undefined) return;
-    let stringHistorialResultados = ''
+    let stringHistorialResultados = '';
     historialResultados.forEach(res => {
-        stringHistorialResultados += res + ' ; '
+        stringHistorialResultados += res + ' ; ';
     })
     stringValorAnterior = stringHistorialResultados
     stringValorActual = '';
@@ -181,7 +181,7 @@ function trigonometria(type){
             break;
         default: stringValorActual =  Math[type](degrees_to_radians(parseFloat(stringValorActual))); break;
     }
-    ultimoRes = stringValorActual;
+    ultimoRes = parseFloat(stringValorActual).toFixed(3);
     historialResultados.push(ultimoRes);
     imprimirValor();
     stringValorActual = '';
